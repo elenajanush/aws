@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>File Uploader</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto border p-5">
+                <h3 class="mb-5 text-center">
+                    <p class="mb-0">This application will show the difference between 3 neighbored numbers.</p>
+                    <p class="mb-0">To be able to do that upload you file</p>
+                </h3>
+                <hr>
+                <div th:if="${status eq 'ERROR'}" class="pt-3">
+                    <p th:text="${message}"></p>
+                </div>
+                <div th:if="${status eq 'OK'}" class="mb-3">
+                    <p th:text="${message}"></p>
+                    <a th:href="@{/resultOnScreen}" class="btn btn-outline-info">View result</a>
+                    <a th:href="@{/downloadCsv}" class="btn btn-info text-white">Download CSV File</a>
+                    <a th:href="@{/downloadTxt}" class="btn btn-info text-white">Download TXT File</a>
+                </div>
+                <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="file" name="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload File</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
